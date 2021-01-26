@@ -20,19 +20,21 @@ namespace ICanWin
             driver.Navigate().GoToUrl("https://pastebin.com");
             driver.Manage().Timeouts().PageLoad.Add(System.TimeSpan.FromSeconds(30));            
         }
-       
+       //Set text to pasty
         public void SetNewPasteText(string text)
         {
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
             IWebElement textBox = wait.Until(e => e.FindElement(By.Id("postform-text")));            
             textBox.SendKeys(text);            
         }
+        //Set title to pasty
         public void SetTitle(string text)
         {
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
             IWebElement titleBox = wait.Until(e => e.FindElement(By.Id("postform-name")));
             titleBox.SendKeys(text);
         }
+        //Set expiration time to pasty
         public void SetPasteExpiration(string expTime)
         {
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
@@ -40,6 +42,7 @@ namespace ICanWin
             wait.Until(e=>e.FindElement(By.XPath($"//li[@class='select2-results__option'and text()='{expTime}']"))).Click();
 
         }
+        //Submit Paste
         public void CreateNewPasteSubmit()
         {
             driver.FindElement(By.XPath("//*[@id=\"w0\"]/div[5]/div[1]/div[8]/button[@class=\"btn -big\"]")).Click();

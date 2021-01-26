@@ -21,35 +21,40 @@ namespace ICanWin
             string title = "Hello Title";
             string expirationTime = "10 Minutes";
 
+            //Set prameters for New Paste
             homePage.SetNewPasteText(text);
             homePage.SetTitle(title);
             homePage.SetPasteExpiration(expirationTime);
             homePage.CreateNewPasteSubmit();
 
-            Thread.Sleep(10000);
-            new WebDriverWait(PastebinHomePage.driver, TimeSpan.FromSeconds(10)).Until(e => e.FindElement(By.XPath("//div[@class='content__title -no-border']")));
+            //Wait page to be loaded
+            PastebinHomePage.driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
+            
 
+            //Copy URL of Result Page
             string resultUrl = PastebinHomePage.driver.Url;
 
-            PastebinResultsPage resultPage = new PastebinResultsPage(resultUrl);
+            //Close Home Page Browser
+            PastebinHomePage.driver.Quit();
 
+            //Open Resul tPage
+            PastebinResultsPage resultPage = new PastebinResultsPage(resultUrl);
             
             string parseResultText = resultPage.GetPasteValue();
-            string titleResult = resultPage.GetTitleValue();
-            string timeResult = resultPage.GetExpitationTime();
-                                   
+              
+            //Assert Result Page is created
             Assert.AreEqual(text, parseResultText);
-            Assert.AreEqual(title, titleResult);
-            Assert.AreEqual(timeResult, "10 min");
+            
 
         }
 
-        //[TestCleanup]
-        //public void CloseBrowser()
-        //{ 
-        //PastebinHomePage.driver.Quit();
-        //PastebinHomePage.driver = null;
-        //}
+        [TestCleanup]
+        public void CloseBrowser()
+        {
+            //Close Result Page Browser
+            PastebinResultsPage.driverRP.Quit();
+            PastebinResultsPage.driverRP = null;
+        }
 
     }
 }
