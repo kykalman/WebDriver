@@ -21,21 +21,37 @@ namespace ICanWin
             string title = "Hello Title";
             string expirationTime = "10 Minutes";
 
-            //Set prameters for New Paste
-            homePage.SetNewPasteText(text);
-            homePage.SetTitle(title);
-            homePage.SetPasteExpiration(expirationTime);
-            homePage.CreateNewPasteSubmit();
+            try
+            {
+                //Set prameters for New Paste
+                homePage.SetNewPasteText(text);
+                homePage.SetTitle(title);
+                homePage.SetPasteExpiration(expirationTime);
+                homePage.CreateNewPasteSubmit();
+            }catch(Exception ex)
+            {
+                
+                Console.WriteLine(ex.Message);
+                Console.WriteLine("Unable to create New Paste");
+            }
 
             //Wait page to be loaded
-            PastebinHomePage.driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
+            Thread.Sleep(5000);
             
 
             //Copy URL of Result Page
             string resultUrl = PastebinHomePage.driver.Url;
 
-            //Close Home Page Browser
-            PastebinHomePage.driver.Quit();
+            try
+            {
+                //Close Home Page Browser
+                PastebinHomePage.driver.Quit();
+            }catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                Console.WriteLine("Unable to Close Browser");
+            }
+
 
             //Open Resul tPage
             PastebinResultsPage resultPage = new PastebinResultsPage(resultUrl);
