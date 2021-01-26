@@ -12,12 +12,12 @@ namespace ICanWin
     {
         static public ChromeDriver driver;
 
-        public PastebinHomePage ()
+        public PastebinHomePage (string url)
         {
             ChromeOptions options = new ChromeOptions();
             options.AddArgument("no-sandbox");
             driver = new ChromeDriver(ChromeDriverService.CreateDefaultService(), options, TimeSpan.FromMinutes(3));
-            driver.Navigate().GoToUrl("https://pastebin.com");
+            driver.Navigate().GoToUrl(url);
             driver.Manage().Timeouts().PageLoad.Add(System.TimeSpan.FromSeconds(30));            
         }
        //Set text to pasty

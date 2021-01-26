@@ -5,6 +5,7 @@ using System;
 using OpenQA.Selenium.Support.UI;
 using ICanWin;
 using System.Threading;
+using System.Diagnostics;
 
 namespace ICanWin
 {
@@ -16,7 +17,8 @@ namespace ICanWin
         [TestMethod]
         public void CreatePasteSetTextTimeTitle()
         {
-            PastebinHomePage homePage = new PastebinHomePage();
+            string siteURL = "https://pastebin.com";
+            PastebinHomePage homePage = new PastebinHomePage(siteURL);
             string text = "Hello";
             string title = "Hello Title";
             string expirationTime = "10 Minutes";
@@ -30,9 +32,8 @@ namespace ICanWin
                 homePage.CreateNewPasteSubmit();
             }catch(Exception ex)
             {
-                
-                Console.WriteLine(ex.Message);
-                Console.WriteLine("Unable to create New Paste");
+
+                Debug.WriteLine(ex.StackTrace.ToString());
             }
 
             //Wait page to be loaded
@@ -48,16 +49,28 @@ namespace ICanWin
                 PastebinHomePage.driver.Quit();
             }catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
-                Console.WriteLine("Unable to Close Browser");
+                Debug.WriteLine(ex.StackTrace.ToString());
             }
 
 
             //Open Resul tPage
             PastebinResultsPage resultPage = new PastebinResultsPage(resultUrl);
-            
-            string parseResultText = resultPage.GetPasteValue();
-              
+            string parseResultText="";
+            try
+            {
+                parseResultText = resultPage.GetPasteValue();
+            }catch(NoSuchElementException ex)
+            {
+                Debug.WriteLine(ex.StackTrace.ToString());
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.StackTrace.ToString());
+            }
+            finally
+            {
+                                PastebinResultsPage.driverRP.Quit();
+            }
             //Assert Result Page is created
             Assert.AreEqual(text, parseResultText);
             
