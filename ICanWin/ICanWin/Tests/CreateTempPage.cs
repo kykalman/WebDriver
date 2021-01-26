@@ -4,6 +4,7 @@ using OpenQA.Selenium.Chrome;
 using System;
 using OpenQA.Selenium.Support.UI;
 using ICanWin;
+using System.Threading;
 
 namespace ICanWin
 {
@@ -25,6 +26,7 @@ namespace ICanWin
             homePage.SetPasteExpiration(expirationTime);
             homePage.CreateNewPasteSubmit();
 
+            Thread.Sleep(10000);
             new WebDriverWait(PastebinHomePage.driver, TimeSpan.FromSeconds(10)).Until(e => e.FindElement(By.XPath("//div[@class='content__title -no-border']")));
 
             string resultUrl = PastebinHomePage.driver.Url;
