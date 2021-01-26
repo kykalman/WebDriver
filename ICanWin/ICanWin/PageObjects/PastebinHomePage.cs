@@ -10,7 +10,7 @@ namespace ICanWin
 {
     class PastebinHomePage
     {
-        static public ChromeDriver driver;
+        static public IWebDriver driver;
 
         public PastebinHomePage (string url)
         {

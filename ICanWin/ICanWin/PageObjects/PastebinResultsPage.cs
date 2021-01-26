@@ -9,7 +9,7 @@ namespace ICanWin
 {
     class PastebinResultsPage
     {
-        static public ChromeDriver driverRP;
+        static public IWebDriver driverRP;
         
         public PastebinResultsPage(string url)
         {
