@@ -17,62 +17,63 @@ namespace ICanWin
         [TestMethod]
         public void CreatePasteSetTextTimeTitle()
         {
-            string siteURL = "https://pastebin.com";
-            PastebinHomePage homePage = new PastebinHomePage(siteURL);
-            string text = "Hello";
-            string title = "Hello Title";
-            string expirationTime = "10 Minutes";
-
-            try
-            {
-                //Set prameters for New Paste
-                homePage.SetNewPasteText(text);
-                homePage.SetTitle(title);
-                homePage.SetPasteExpiration(expirationTime);
-                homePage.CreateNewPasteSubmit();
-            }catch(Exception ex)
-            {
-
-                Debug.WriteLine(ex.StackTrace.ToString());
-            }
-
-            //Wait page to be loaded
-            Thread.Sleep(5000);
             
+            //PastebinHomePage homePage = new PastebinHomePage(siteURL);
+            //string text = "Hello";
+            //string title = "Hello Title";
+            //string expirationTime = "10 Minutes";
+
+            //try
+            //{
+            //    //Set prameters for New Paste
+            //    homePage.SetNewPasteText(text);
+            //    homePage.SetTitle(title);
+            //    homePage.SetPasteExpiration(expirationTime);
+            //    homePage.CreateNewPasteSubmit();
+            //}catch(Exception ex)
+            //{
+
+            //    Debug.WriteLine(ex.StackTrace.ToString());
+            //}
+
+            ////Wait page to be loaded
+            //Thread.Sleep(5000);
+
 
             //Copy URL of Result Page
-            string resultUrl = PastebinHomePage.driver.Url;
+            string resultUrl = "https://pastebin.com/a52P7fSe";
 
-            try
-            {
-                //Close Home Page Browser
-                PastebinHomePage.driver.Quit();
-            }catch (Exception ex)
-            {
-                Debug.WriteLine(ex.StackTrace.ToString());
-            }
+            //try
+            //{
+            //    //Close Home Page Browser
+            //    PastebinHomePage.driver.Quit();
+            //}catch (Exception ex)
+            //{
+            //    Debug.WriteLine(ex.StackTrace.ToString());
+            //}
 
-
+            string tit = "TIYRF";
             //Open Resul tPage
             PastebinResultsPage resultPage = new PastebinResultsPage(resultUrl);
+            string value = resultPage.GetTitleValue();
             string parseResultText="";
-            try
-            {
-                parseResultText = resultPage.GetPasteValue();
-            }catch(NoSuchElementException ex)
-            {
-                Debug.WriteLine(ex.StackTrace.ToString());
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine(ex.StackTrace.ToString());
-            }
-            finally
-            {
-                                PastebinResultsPage.driverRP.Quit();
-            }
-            //Assert Result Page is created
-            Assert.AreEqual(text, parseResultText);
+            //try
+            //{
+            //    parseResultText = resultPage.GetPasteValue();
+            //}catch(NoSuchElementException ex)
+            //{
+            //    Debug.WriteLine(ex.StackTrace.ToString());
+            //}
+            //catch (Exception ex)
+            //{
+            //    Debug.WriteLine(ex.StackTrace.ToString());
+            //}
+            //finally
+            //{
+            //                    PastebinResultsPage.driverRP.Quit();
+            //}
+            ////Assert Result Page is created
+            Assert.AreEqual(tit, value);
             
 
         }

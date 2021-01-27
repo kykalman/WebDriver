@@ -28,6 +28,13 @@ namespace ICanWin
             string paste = pasteResult.GetAttribute("value");
             return paste;
         }
- 
+        public string GetTitleValue()
+        {
+            WebDriverWait wait = new WebDriverWait(driverRP, TimeSpan.FromSeconds(10));
+            IWebElement titleResult = wait.Until(e => e.FindElement(By.XPath("//div[@class='info-top']/h1")));
+            string title = titleResult.GetAttribute("innerHTML");
+            return title;
+        }
+
     }
 }

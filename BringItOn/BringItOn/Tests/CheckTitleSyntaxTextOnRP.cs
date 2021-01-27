@@ -18,9 +18,9 @@ namespace BringItOn
         {
             string siteURL = "https://pastebin.com";
             PastebinHomePage homePage = new PastebinHomePage(siteURL);
-            string text ="git config --global user.name  \"New Sheriff in Town\"\n"+
-                         "git reset $(git commit - tree HEAD ^{ tree} -m \"Legacy code\")\n"+
-                         "git push origin master --force\n";
+            string text = @"git config --global user.name  ""New Sheriff in Town""
+git reset $(git commit - tree HEAD ^{ tree} -m ""Legacy code"")
+git push origin master --force";
             string title = "how to gain dominance among developers";
             string expirationTime = "10 Minutes";
             string syntaxHihglight = "Bash";
@@ -82,7 +82,7 @@ namespace BringItOn
                 PastebinResultsPage.driverRP.Quit();
             }
             //Assert Result Page is created
-            Assert.AreEqual(text.Replace("\n","").Replace(" ",""), parseResultText.Replace("\n","").Replace(" ",""));
+            Assert.AreEqual(text.Replace(" ",""), parseResultText.Replace(" ",""));
             Assert.AreEqual(title, titleResilt);
             Assert.AreEqual(syntaxHihglight, syntaxResult);
 

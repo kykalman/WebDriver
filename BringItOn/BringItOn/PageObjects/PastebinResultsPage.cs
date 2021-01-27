@@ -38,7 +38,7 @@ namespace ICanWin
         public string GetSyntaxHighlight()
         {
             WebDriverWait wait = new WebDriverWait(driverRP, TimeSpan.FromSeconds(10));
-            IWebElement titleResult = wait.Until(e => e.FindElement(By.XPath("//div[@class='highlighted-code']/div/div/a]")));
+            IWebElement titleResult = wait.Until(e => e.FindElement(By.XPath("//div[@class='highlighted-code']/div/div/a")));
             string syntaxHigh = titleResult.GetAttribute("innerHTML");
             return syntaxHigh;
         }
