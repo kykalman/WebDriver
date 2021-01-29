@@ -30,7 +30,7 @@ namespace HurtMePlenty.PageObjects
             IWebElement element = wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(By.CssSelector(selector)));
             return element;
         }
-
+        public GoogleCloudHomePage() {}
         public GoogleCloudHomePage(string url)
         {
             ChromeOptions options = new ChromeOptions();
@@ -115,11 +115,46 @@ namespace HurtMePlenty.PageObjects
         }
         public void SelectNumberOfGPU()
         {
-            IWebElement machineType = GetElementByXpath("//*[@id=select_value_label_392]/span[1]/div");
-            machineType.Click();
-            IWebElement machineTypeValue = GetElementByCssSelector("#select_value_label_392>span:nth-child(1)>div");
-            machineTypeValue.Click();
+            IWebElement numberGPU = GetElementByXpath("//*[@id='select_value_label_392']/span[1]/div");
+            numberGPU.Click();
+            IWebElement GPUValue = GetElementByCssSelector("#select_option_399");
+            GPUValue.Click();
         }
+        public void SelectGPUType()
+        {
+            IWebElement GPUType = GetElementByXpath("//*[@id='select_value_label_393']/span[1]");
+            GPUType.Click();
+            IWebElement GPUTypeValue = GetElementByCssSelector("#select_option_406 > div.md-text.ng-binding");
+            GPUTypeValue.Click();
+        }
+        public void SelectSSD()
+        {
+            IWebElement ssdSelect = GetElementByXpath("//*//*[@id='select_value_label_354']/span[1]");
+            ssdSelect.Click();
+            IWebElement ssdSelectType = GetElementByCssSelector("#select_option_381 > div.md-text.ng-binding");
+            ssdSelectType.Click();
+        }
+        public void SelectDatacenterLocation()
+        {
+            IWebElement ssdDCL = GetElementByXpath("//*[@id='select_value_label_61']/span[1]");
+            ssdDCL.Click();
+            IWebElement ssdDCLType = GetElementByCssSelector("#select_option_199 > div.md-text.ng-binding");
+            ssdDCLType.Click();
+        }
+        public void SelectCommitedUsage()
+        {
+            IWebElement comUse = GetElementByXpath("//*[@id='select_value_label_62']");
+            comUse.Click();
+            IWebElement comUseType= GetElementByCssSelector("#select_option_97 > div.md-text");
+            comUseType.Click();
+        }
+        public void AddToEstimate()
+        {
+            IWebElement addToEst = GetElementByCssSelector("#mainForm > div:nth-child(3) > div > md-card > md-card-content > div > div:nth-child(1) > form > div.layout-align-end-start.layout-row > button");
+            addToEst.Click();
+        }
+        
+
 
     }
 }
