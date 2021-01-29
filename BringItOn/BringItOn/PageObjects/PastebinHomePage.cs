@@ -52,7 +52,9 @@ namespace ICanWin
         //Submit Paste
         public void CreateNewPasteSubmit()
         {
-            driver.FindElement(By.XPath("//*[@id=\"w0\"]/div[5]/div[1]/div[8]/button[@class=\"btn -big\"]")).Click();
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+            IWebElement button = wait.Until(e =>e.FindElement(By.XPath("//*[@id='w0']/div[5]/div[1]/div[8]/button")));
+            button.Click();
         }
 
     }
