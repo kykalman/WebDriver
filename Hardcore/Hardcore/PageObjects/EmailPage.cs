@@ -88,11 +88,13 @@ namespace Hardcore.PageObjects
 
             IWebElement receivedEmail = GetElementByXpath("//*[@id='inbox_count_number']");  
             int numberOfEmails;
+            bool end = true;
             do
             {
                 string numOfEm = receivedEmail.GetAttribute("innerHTML");
                 numberOfEmails = Int32.Parse(numOfEm);
-            } while (numberOfEmails == 1);
+                end = numberOfEmails == 0;
+            } while (end);
 
             IWebElement reseivedEmalOpen = GetElementByXpath("//*[@id='mail_messages_content']/div/div[1]/div[2]/span");
             reseivedEmalOpen.Click();
