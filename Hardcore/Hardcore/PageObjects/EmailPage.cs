@@ -65,19 +65,19 @@ namespace Hardcore.PageObjects
         }
         public void InsertEmailAdress()
         {
-            EmailPage.driverEM.SwitchTo().Window(EmailPage.driverEM.WindowHandles[0]);
+            driverEM.SwitchTo().Window(driverEM.WindowHandles[0]);
             WebDriverWait wait = new WebDriverWait(driverEM, TimeSpan.FromSeconds(10)); 
 
             IWebElement detailFrame = wait.Until(e=>e.FindElement(By.XPath("//iframe")));
             driver.SwitchTo().Frame(detailFrame);
             new WebDriverWait(driver, TimeSpan.FromSeconds(10)).Until(SeleniumExtras.WaitHelpers.ExpectedConditions.FrameToBeAvailableAndSwitchToIt(By.XPath("//iframe[@id='myFrame']")));
-            IWebElement inputField = wait.Until(e => e.FindElement(By.XPath("//*[@id='input_459']")));
+            IWebElement inputField = wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(By.XPath("//*[@id='input_477']")));
             inputField.Click();
             inputField.SendKeys(Keys.Control + "v");
         }
         public void SentEmail()
         {
-            string buttonToSend = "//*[@id='dialogContent_465']/form/md-dialog-actions/button[2]";
+            string buttonToSend = "//*[@id='dialogContent_483']/form/md-dialog-actions/button[2]";
             IWebElement buttonS = GetElementByXpath(buttonToSend);
             buttonS.Click();
         }

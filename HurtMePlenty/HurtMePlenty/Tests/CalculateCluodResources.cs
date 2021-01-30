@@ -39,8 +39,7 @@ namespace HurtMePlenty
             homePage.SelectGPUType();
             homePage.SelectSSD();
             homePage.SelectDatacenterLocation();
-            homePage.SelectCommitedUsage();
-            Thread.Sleep(10000);
+            homePage.SelectCommitedUsage();            
             homePage.AddToEstimate();
 
             CalculationResults results = new CalculationResults();

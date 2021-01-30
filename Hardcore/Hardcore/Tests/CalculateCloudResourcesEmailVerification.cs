@@ -40,10 +40,15 @@ namespace Hardcore
             homePage.SelectMachineSeries();
             homePage.SelectMachineType();
             homePage.CheckAddCpuCheckbox(addCPU);
-            //homePage.SelectNumberOfGPU();
+            homePage.SelectNumberOfGPU();
+            homePage.SelectGPUType();
+            homePage.SelectSSD();
+            homePage.SelectDatacenterLocation();
+            homePage.SelectCommitedUsage();
             homePage.AddToEstimate();
             estimatedSumStartPage = homePage.GetEstimatedSumm();
             homePage.ClickSendEmailButton();
+            Thread.Sleep(2000);
 
 
 
@@ -59,6 +64,13 @@ namespace Hardcore
 
             Assert.AreEqual(estimatedSumStartPage, estimatedSummFromEmail);          
 
+        }
+        [TestCleanup]
+        public void CloseBrowser()
+        {
+            //Close Result Page Browser
+            EmailPage.driverEM.Quit();
+            EmailPage.driverEM = null;
         }
     }
 }
